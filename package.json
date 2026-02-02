@@ -4,7 +4,10 @@
   "scripts": {
     "build": "nitro build",
     "dev": "nitro dev",
-    "preview": "node .output/server/index.mjs"
+    "preview": "node .output/server/index.mjs",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:ui": "vitest --ui"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.2",
