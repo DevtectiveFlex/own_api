@@ -7,7 +7,11 @@
     "preview": "node .output/server/index.mjs",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:ui": "vitest --ui"
+    "test:ui": "vitest --ui",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "format": "prettier .",
+    "format:fix": "prettier --write ."
   },
   "devDependencies": {
     "@eslint/js": "^9.39.2",
