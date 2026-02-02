@@ -8,6 +8,9 @@ export default defineConfig([
     ignores: [
       '.output/**',
       'node_modules/**',
+      'nitro.config.ts',
+      '**/*.d.ts',
+      '.nitro/**',
     ],
   },
   {
