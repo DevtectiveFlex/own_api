@@ -7,4 +7,8 @@ if (!supabaseRoleKey && !supabaseURL) {
   throw new Error('Supabase env vars are not set');
 }
 
-export const supabase = createClient(supabaseURL!, supabaseRoleKey!)
+export const supabase = createClient(supabaseURL!, supabaseRoleKey!, {
+  auth: {
+    persistSession: false,
+  }
+})
