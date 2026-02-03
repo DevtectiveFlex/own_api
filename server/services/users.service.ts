@@ -1,4 +1,4 @@
-import { findUserByTelegramId } from '../db/users/users.repo'
+import { findUserByTelegramId } from '../db/users/users.repo';
 
 export async function getUserByTelegramId(telegramId: number) {
   if (!Number.isInteger(telegramId)) {
