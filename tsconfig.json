@@ -6,9 +6,9 @@
     "target": "ESNext",
     "module": "ESNext",
     "moduleResolution": "Bundler",
-    "jsx": "preserve",
-    "jsxFactory": "h",
-    "jsxFragmentFactory": "Fragment",
+    "paths": {
+      "~/*": ["./server/*"]
+    },
 
     // Core checks
     "strict": true,
@@ -26,7 +26,6 @@
     // "noUnusedParameters": true,
 
     // Libs & paths
-    "lib": ["ESNext", "DOM"],
-    "baseUrl": "."
+    "lib": ["ESNext", "DOM"]
   }
 }
