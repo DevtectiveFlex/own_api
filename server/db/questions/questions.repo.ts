@@ -52,4 +52,13 @@ export function listArchivedQuestions() {
 }
 
 
+export function archiveQuestion(id: string) {
+  return supabase
+    .from(TABLE)
+    .update({ is_archived: true })
+    .eq('id', id)
+    .eq('is_archived', false)
+}
+
+
 
