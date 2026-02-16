@@ -60,5 +60,11 @@ export function archiveQuestion(id: string) {
     .eq('is_archived', false)
 }
 
-
+export function unarchiveQuestion(id: string) {
+  return supabase
+    .from(TABLE)
+    .update({ is_archived: false })
+    .eq('id', id)
+    .eq('is_archived', true)
+}
 
