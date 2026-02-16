@@ -3,11 +3,45 @@ import { supabase } from "../supabase";
 
 
 const TABLE = 'questions'
+
+
+//==============================
+// CREATE
+//==============================
+
 /**
- * get all not archived questions from the postgresql `questions` table 
- * 
- * `SELECT` * `FROM` question `WHERE` is_archived = false `ORDER BY` created_at DESC
+ * creates question in the postgresql `questions` table  
+ *
  * @returns 
+ */
+export function createQuestion(question: CreateQuestionDto) {
+  return supabase
+    .from(TABLE)
+    .insert(question)
+    .select()
+    .single()
+}
+
+
+//==============================
+// READ
+//==============================
+
+/**
+ * Returns question selected by id
+ */
+export function getQuestionById(id: string) {
+  return supabase
+    .from(TABLE)
+    .select()
+    .eq('id', id)
+    .single()
+    .overrideTypes<Question>()
+}
+
+
+/**
+ * Returns all active questions ordered by creation date (DESC)
  */
 export function listQuestions() {
   return supabase
@@ -22,29 +56,7 @@ export function listQuestions() {
 
 
 /**
- * gets question by id from the postgresql `questions` table
- * @returns 
- */
-export function getQuestionById(id: string) {
-  return supabase
-    .from(TABLE)
-    .select('*')
-    .eq('id', id)
-    .single()
-    .overrideTypes<Question>()
-}
-
-export function createQuestion(question: CreateQuestionDto) {
-  return supabase
-    .from(TABLE)
-    .insert(question)
-    .select()
-    .single()
-}
-/**
- * get all archived questions from the postgresql `questions` table
- * `SELECT` * `FROM` question `WHERE` is_archived = true `ORDER BY` created_at DESC
- * @returns 
+ * Returns all unactive questions ordered by creation date (DESC)
  */
 export function listArchivedQuestions() {
   return supabase
@@ -57,20 +69,23 @@ export function listArchivedQuestions() {
     .overrideTypes<Question[]>();
 }
 
+//==============================
+// UPDATE
+//==============================
 
-export function archiveQuestion(id: string) {
+/**
+ * Updates the is_archived flag for a question.
+ */
+export function setArchiveStatus(id: string, value: boolean) {
   return supabase
     .from(TABLE)
-    .update({ is_archived: true })
+    .update({ is_archived: value })
     .eq('id', id)
-    .eq('is_archived', false)
+    .select()
+    .single()
 }
 
-export function unarchiveQuestion(id: string) {
-  return supabase
-    .from(TABLE)
-    .update({ is_archived: false })
-    .eq('id', id)
-    .eq('is_archived', true)
-}
 
+//==============================
+// DELETE
+//==============================
