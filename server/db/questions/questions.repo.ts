@@ -1,4 +1,4 @@
-import { Question } from "~/domain/question";
+import { CreateQuestionDto, Question } from "~/domain/question";
 import { supabase } from "../supabase";
 
 
@@ -34,7 +34,13 @@ export function getQuestionById(id: string) {
     .overrideTypes<Question>()
 }
 
-
+export function createQuestion(question: CreateQuestionDto) {
+  return supabase
+    .from(TABLE)
+    .insert(question)
+    .select()
+    .single()
+}
 /**
  * get all archived questions from the postgresql `questions` table
  * `SELECT` * `FROM` question `WHERE` is_archived = true `ORDER BY` created_at DESC
