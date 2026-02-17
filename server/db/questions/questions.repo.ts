@@ -1,4 +1,4 @@
-import { CreateQuestionDto, Question } from "~/domain/question";
+import { QuestionDto, Question } from "~/domain/question";
 import { supabase } from "../supabase";
 
 
@@ -14,7 +14,7 @@ const TABLE = 'questions'
  *
  * @returns 
  */
-export function createQuestion(question: CreateQuestionDto) {
+export function createQuestion(question: QuestionDto) {
   return supabase
     .from(TABLE)
     .insert(question)
@@ -72,6 +72,14 @@ export function listArchivedQuestions() {
 //==============================
 // UPDATE
 //==============================
+
+export function updateQuestion(id: string, value: QuestionDto) {
+  return supabase
+    .from(TABLE)
+    .update(value)
+    .select()
+    .single()
+}
 
 /**
  * Updates the is_archived flag for a question.
