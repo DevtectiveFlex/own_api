@@ -9,7 +9,7 @@ export interface Question {
   is_archived: boolean | null;
 }
 
-export interface CreateQuestionDto {
+export interface QuestionDto {
   text: string;
   answer: string;
   media_url?: string | null;
