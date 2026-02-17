@@ -8,3 +8,10 @@ export interface Question {
   updated_at: string | null;
   is_archived: boolean | null;
 }
+
+export interface QuestionDto {
+  text: string;
+  answer: string;
+  media_url?: string | null;
+  created_by: string;
+};
