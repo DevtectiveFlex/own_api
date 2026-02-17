@@ -73,10 +73,14 @@ export function listArchivedQuestions() {
 // UPDATE
 //==============================
 
+/**
+ * Updates question selected by id
+ */
 export function updateQuestion(id: string, value: QuestionDto) {
   return supabase
     .from(TABLE)
     .update(value)
+    .eq('id', id)
     .select()
     .single()
 }
