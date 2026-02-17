@@ -87,6 +87,7 @@ export function updateQuestion(id: string, value: QuestionDto) {
 
 /**
  * Updates the is_archived flag for a question.
+ * Soft delete for question while is_archived = true
  */
 export function setArchiveStatus(id: string, value: boolean) {
   return supabase
